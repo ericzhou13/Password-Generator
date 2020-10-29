@@ -1,0 +1,37 @@
+import random
+fh = open("passwords.txt", 'a')
+letterlist = ['a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+Capital_Letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+number_list = ['1','2','3','4','5','6','7','8','9','0']
+
+Symbols = "!#$@&"
+def passwordgenerator():
+    global new_password
+    password_name ="password name:" + input("type your password name:")#indicate what this password is for
+    username = "username: " + input("type your username here")#indicate what you want the username to be
+    
+
+    password = []
+    x = random.randint(5,9)#randomly declares number of letters
+    y = random.randint(2,5)#randomly declares number of numbers
+    Symbol = random.choice(Symbols)#chooses a random symbol
+    Capital_letter = random.choice(Capital_Letters)#chooses a random capital letter
+
+    for i in range(0,x):
+        password.append(random.choice(letterlist))
+    for i in range(0,y):
+        password.append(random.choice(number_list))
+    #Combines all the symbols, letters and numbers together to form the password
+    password.append(Symbol)
+    password.append(Capital_letter)
+    random.shuffle(password)
+    
+    new_password = "password:" + "".join(password)
+    
+    
+    #writes code into a file
+    fh.write(password_name + "\n" + username + "\n" + new_password + "\n" + "\n")
+    fh.close()
+    
+
+passwordgenerator()
